@@ -20,6 +20,7 @@ noOfWorkingDays=20
 totalWorkHrs=0
 noOfDays=0
 
+
 #Use_Case_1
 function attendance()
 {
@@ -69,18 +70,15 @@ function usingCase()
 {
 	random=$((RANDOM%3))
 	case $random in
-			1)
-				dailySalary=$(($partTimeHrs * $wagePerHr ))
-				echo "Salary is.."$dailySalary
-			;;
-			2)
-         	dailySalary=$(($fullTimeHrs * $wagePerHr ))
-         	echo "Salary is.."$dailySalary
-         ;;
-			*)
-				echo "Salary is.. 0"
-			;;
-	esac
+		1)
+		dailySalary=$(($partTimeHrs * $wagePerHr ))
+		echo "Salary is.."$dailySalary;;
+		2)
+		dailySalary=$(($fullTimeHrs * $wagePerHr ))
+		echo "Salary is.."$dailySalary;;
+		*)
+		echo "Salary is.. 0";;
+esac
 }
 #usingCase
 
@@ -92,14 +90,11 @@ function wageForMonth()
 		random=$((RANDOM%3))
 		case $random in
 			1)
-			empHrs=4
-			;;
+			empHrs=4;;
 			2)
-			empHrs=8
-			;;
+			empHrs=8;;
 			*)
-			empHrs=0
-			;;
+			empHrs=0;;
 			esac
 		salary=$(($wagePerHr*$empHrs))
 		echo $salary
@@ -107,32 +102,34 @@ function wageForMonth()
 	done
 echo "Total Wage of Month.."$totalSalary
 }
-wageForMonth
+#wageForMonth
 
-#Use_Case_6
-function tillMaxHrs()
+function findHrs()		# Use Case 6 Refactored Here For Output of Use Case 7
 {
 	while [[ totalWorkHrs -lt 100 && noOfDays -lt $noOfWorkingDays  ]]
 	do
       random=$((RANDOM%3))
       case $random in
          1)
-         empHrs=4
-         ;;
+         empHrs=4 ;;
          2)
-         empHrs=8
-         ;;
+         empHrs=8 ;;
          *)
-         empHrs=0
-         ;;
+         empHrs=0 ;;
        esac
 	((noOfDays++))
-	totalWorkHrs=$(($totalWorkHrs+$empHrs))
-	salary=$(($wagePerHr*$empHrs))
-	totalSalary=$(($totalSalary + $salary ))
+	echo "Working Hours On Day $noOfDays.."
+	getWorkingHrs $empHrs
    done
-echo "Total Wage of Month.."$totalSalary
+#echo "Total Wage of Month.."$totalSalary
 }
-tillMaxHrs
 
-
+#Use_Case_7
+function getWorkingHrs()
+{
+	local empHours
+	empHours=$1
+	totalWorkHrs=$(($totalWorkHrs + $empHours))
+	echo  $totalWorkHrs
+}
+findHrs
