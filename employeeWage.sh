@@ -7,8 +7,10 @@
 echo "Welcome To Employee Wage Calculation"
 
 #variables
-isPresent=1
 wagePerHr=20
+partTimeHrs=4
+fullTimeHrs=8
+isPresent=1
 hrsPerDay=8
 isPartTime=1
 isFillTime=2
@@ -56,4 +58,24 @@ function checkPartTime()
 	dailySalary=$(($empHrs * $wagePerHr))
 	echo "Salary is.."$dailySalary
 }
-checkPartTime
+#checkPartTime
+
+#Use_Case_4
+function usingCase()
+{
+	random=$((RANDOM%3))
+	case $random in
+			1)
+			dailySalary=$(($partTimeHrs * $wagePerHr ))
+			echo "Salary is.."$dailySalary
+			;;
+			2)
+         		dailySalary=$(($fullTimeHrs * $wagePerHr ))
+         		echo "Salary is.."$dailySalary
+         		;;
+			*)
+			echo "Salary is.. 0"
+			;;
+	esac
+}
+usingCase
