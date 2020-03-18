@@ -17,6 +17,9 @@ isPartTime=1
 isFillTime=2
 empHrs=0
 noOfWorkingDays=20
+totalWorkHrs=0
+noOfDays=0
+
 #Use_Case_1
 function attendance()
 {
@@ -105,3 +108,31 @@ function wageForMonth()
 echo "Total Wage of Month.."$totalSalary
 }
 wageForMonth
+
+#Use_Case_6
+function tillMaxHrs()
+{
+	while [[ totalWorkHrs -lt 100 && noOfDays -lt $noOfWorkingDays  ]]
+	do
+      random=$((RANDOM%3))
+      case $random in
+         1)
+         empHrs=4
+         ;;
+         2)
+         empHrs=8
+         ;;
+         *)
+         empHrs=0
+         ;;
+       esac
+	((noOfDays++))
+	totalWorkHrs=$(($totalWorkHrs+$empHrs))
+	salary=$(($wagePerHr*$empHrs))
+	totalSalary=$(($totalSalary + $salary ))
+   done
+echo "Total Wage of Month.."$totalSalary
+}
+tillMaxHrs
+
+
