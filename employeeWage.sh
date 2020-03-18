@@ -1,19 +1,20 @@
 #!/bin/bash -x
 
-# @ Description - Use Cases : Employee Wage Computation
-# @ Author - Roshan Balrushna Shinde
+# @ Description - Use Cases : Employee Wage Calculation
+# @ Author - Roshan Balkrushna Shinde
 # @ Since - 18-03-2020 
 
 echo "Welcome To Employee Wage Calculation"
 
 #variables
 isPresent=1
+wagePerHour=20
+hrsPerDay=8
 
 #Use_Case_1
 function attendance()
 {
-	random=$((RANDOM % 2 ))
-	if [[ $random -eq $isPresent ]]
+	if [[ $((RANDOM%2)) -eq $isPresent ]]
 	then
 		echo "Employee is Present"
 	else
@@ -21,3 +22,16 @@ function attendance()
 	fi
 }
 attendance
+
+#Use_Case_2
+function dailyWage()
+{
+	if [[ $((RANDOM%2)) -eq $isPresent ]]
+	then
+		dailySalary=$(($wagePerHour * $hrsPerDay ))
+		echo "Salary is.."$dailySalary
+	else
+		echo "Salary = 0"
+	fi
+}
+dailyWage
